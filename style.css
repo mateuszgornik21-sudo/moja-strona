@@ -1,0 +1,362 @@
+/* Reset i podstawowe style */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Arial', sans-serif; line-height:1.5; background:#1a1a1a; color:#eee; transition: margin-left 0.3s; }
+a { color:inherit; text-decoration:none; }
+button { cursor:pointer; }
+
+/* Nagłówek */
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 15px 30px;
+  background: #222;
+  border-bottom: 2px solid #444;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  gap: 15px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* odstęp między obrazkiem a tekstem */
+}
+
+.logo img {
+  height: 50px;
+}
+
+.logo span {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.nav { display:flex; gap:20px; }
+.nav a { font-weight:500; padding:8px 12px; border-radius:5px; transition:0.3s; }
+.nav a:hover { background:#b30000; }
+
+/* Hero */
+.hero {
+  text-align:center;
+  padding:150px 20px 100px;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('zdjecie-psp.png') center/cover no-repeat;
+  color:#fff;
+}
+.hero h1 { font-size:48px; margin-bottom:10px; }
+.hero p { font-size:20px; margin-bottom:30px; }
+.hero button {
+  background:#b30000;
+  border:none;
+  padding:12px 25px;
+  color:#fff;
+  font-size:16px;
+  border-radius:5px;
+  transition:0.3s;
+}
+.hero button:hover { background:#ff1a1a; transform: scale(1.05); }
+
+/* Content */
+.content { padding:40px 20px; max-width:1200px; margin:0px auto; }
+.content h2 { font-size:32px; margin-bottom:5px; color:#fff; }
+.content p { font-size:18px; margin-bottom:15px; color:#ccc; }
+
+/* Stopka */
+footer {
+  text-align:center;
+  padding:20px 0;
+  background:#222;
+  border-top:2px solid #444;
+  margin-top:40px;
+  font-size:14px;
+  color:#aaa;
+}
+
+/* Wysuwane menu */
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 999;
+  top: 50px;
+  left: 0;
+  background-color: #222;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+}
+.sidebar a {
+  display: block;
+  padding: 15px 30px;
+  text-decoration: none;
+  color: #eee;
+  font-size: 18px;
+  transition: 0.3s;
+}
+.sidebar a:hover { background: #b30000; transform: scale(1.05); }
+
+/* Klasa aktywna po otwarciu menu */
+body.menu-open { margin-left: 250px; }
+.sidebar-open { width:250px; }
+
+/* Responsywność */
+@media (max-width:768px){
+  .nav { display:none; }
+  body.menu-open { margin-left:0; }
+}
+
+/* --- DODANE STYLES DLA PODMENU --- */
+
+/* Strzałki przy linkach z podmenu */
+.sidebar a.has-submenu::after {
+  content: "\25BC"; /* strzałka w dół */
+  float: right;
+  transition: transform 0.3s;
+}
+
+/* Ukryte podmenu */
+.submenu {
+  display: none;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+/* Styl podlinków w podmenu */
+.submenu a {
+  font-size: 16px;
+  padding-left: 40px;
+}
+
+/* Klasa aktywna dla rozwiniętego podmenu */
+.submenu-open > .submenu {
+  display: flex;
+}
+
+.submenu-open > a.has-submenu::after {
+  transform: rotate(180deg);
+}
+
+/* --- DODANY STYL DLA DUŻEGO PRZYCISKU MENU --- */
+.menu-toggle {
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  background-color: #b30000;
+  padding: 12px 25px;
+  border-radius: 5px;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 10000;
+  user-select: none;
+  box-shadow: 0 0 10px rgba(179, 0, 0, 0.7);
+  transition: background-color 0.3s;
+}
+.menu-toggle:hover {
+  background-color: #ff1a1a;
+}
+
+/* --- DODANE STYLE DLA TABELI ZARZĄDU --- */
+.zarzad-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #1f1f1f; /* ciemne tło tabeli */
+  color: #eee;               /* jasny tekst */
+  font-size: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.zarzad-table th, .zarzad-table td {
+  padding: 12px 15px;
+  border: 1px solid #444;
+  text-align: left;
+}
+
+.zarzad-table th {
+  background-color: #b30000; /* ciemnoczerwone nagłówki */
+  color: #fff;
+  font-weight: 700;
+}
+
+.zarzad-table tr:nth-child(even) {
+  background-color: #2a2a2a; /* ciemniejsze pasy co drugi wiersz */
+}
+
+.zarzad-table tr:hover {
+  background-color: #333; /* efekt podświetlenia wiersza przy najechaniu */
+  cursor: default;
+}
+.zarzad-table .main-cell {
+  text-align: center;       /* wyśrodkowanie poziome */
+  vertical-align: middle;   /* wyśrodkowanie pionowe */
+  font-weight: 700;         /* pogrubienie */
+  font-size: 18px;          /* lekko większy tekst */
+  background-color: #5e5e5e; /* opcjonalnie ciemnoczerwone tło dla wyróżnienia */
+  color: #fff;
+}
+.content-page {
+text-align: center;
+vertical-align: middle;
+}
+/* --- Karty wozów JRG --- */
+.jrg-vehicles {
+  margin-top: 30px;
+  text-align: center;
+  color: #fff;
+}
+
+.jrg-vehicles h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.vehicle-card {
+  background-color: #222;
+  border: 2px solid #444;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin: 15px auto;
+  max-width: 600px;
+  text-align: left;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.vehicle-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(179,0,0,0.7);
+}
+
+.vehicle-card h4 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #b30000;
+}
+
+.vehicle-card p {
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.vehicle-card p strong {
+  color: #fff;
+}
+.vehicle-image {
+  width: 100%;
+  height: 200px; /* wysokość obszaru na zdjęcie */
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.vehicle-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* przycina obraz, zachowując proporcje */
+  display: block;
+}
+.scrolling-info {
+  width: 100%;
+  overflow: hidden;
+  background-color: #b30000;
+  color: #fff;
+  padding: 10px 0;       /* zmniejszony padding dla mniejszej wysokości */
+  position: relative;
+  border-radius: 5px;
+  margin: 20px 0;
+  font-size: 14px;       /* mniejsza czcionka */
+  line-height: 1.5;
+  display: flex;          /* używamy flexboxa do centrowania */
+  align-items: center;    /* pionowe wyśrodkowanie tekstu */
+}
+
+.scrolling-info p {
+  display: inline-block;
+  white-space: nowrap;
+  position: absolute;
+  animation: moveRight 15s linear infinite;
+  font-weight: bold;
+  font-size: inherit;     /* dziedziczy mniejszą czcionkę z kontenera */
+}
+
+/* Animacja przesuwania w prawo */
+@keyframes moveRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.card {
+  position: relative;
+    width: 140px;
+  background-color: #222;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    margin-top: 90px;    
+  margin-left: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card a {
+  position: relative;
+    display: block;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  padding: 15px;
+}
+
+.card img {
+  position: relative;
+    width: 100%;        /* własna ikona */
+  height: auto;
+  object-fit: cover;  /* dopasowanie ikony */
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  position: relative;
+    font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.card p {
+  position: relative;
+    font-size: 10px;
+  color: #ccc;
+}
+
+.card:hover {
+  position: relative;
+    transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+}
+.rekrutacja-opis {
+   text-align:center;
+   margin-top: 0px auto;
+  padding:5px 5px 5px;
+  color: #fff;
+}
+.rekrutacja-wymagania {
+  text-align:center;
+   margin-top: 0px auto;
+  padding:5px 5px 5px;
+  color: #fff;
+}
+.rekrutacja-formularz {
+    text-align:center;
+   margin-top: 0px auto;
+  padding:40px 5px 5px;
+  color: #fff;
+}
